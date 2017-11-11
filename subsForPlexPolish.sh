@@ -22,6 +22,14 @@ echo "Subtitles downloaded by qnapi"
 enca -x UTF-8 -L polish ${subsFile}
 echo "Subtitles converted to UTF-8"
 
+TEST_PL=`grep ą ${subsFile}`
+
+if [ -z "$TEST_PL" ]; then
+  echo "ERROR: Subtitles are not in polish language!"
+  rm ${subsFile}
+  exit 1
+fi
+
 ${mplayerApp} -sub ${subsFile} -subcp UTF-8 -dumpsrtsub -vo cvidix -really-quiet $movieFile &
 
 sleep 0.2
