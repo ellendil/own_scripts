@@ -30,9 +30,9 @@ if [ -z "$TEST_PL" ]; then
   exit 1
 fi
 
-${mplayerApp} -sub ${subsFile} -subcp UTF-8 -dumpsrtsub -vo cvidix -really-quiet $movieFile &
+${mplayerApp} -sub ${subsFile} -subcp UTF-8 -dumpsrtsub $movieFile &
 
-sleep 0.2
+sleep 3.0
 mplayerPid=$(ps aux | grep mplayer | awk '{print $2}')
 if [ ${#mplayerPid} -eq 0 ]; then
     echo "Mplayer not started srt file not created."
